@@ -1,4 +1,4 @@
 import Header from "./Header";
 import Body from "./Body";
-
-export { Header, Body };
+import Post from "./Post";
+export { Header, Body, Post };

@@ -1,6 +1,15 @@
 @tailwind base;
 @tailwind components;
-.on-dropdown {
-  @apply opacity-0  -translate-x-5  translate-y-5;
+.off-dropdown {
+  @apply opacity-0 -translate-x-5  translate-y-2;
+}
+.theme-one {
+  @apply bg-gradient-to-t from-theme-one-to to-theme-one-from 
+}
+.theme-two {
+  @apply bg-gradient-to-t from-theme-two-to to-theme-two-from 
+}
+.theme-three {
+  @apply bg-gradient-to-t from-theme-three-to to-theme-three-from 
 }
 @tailwind utilities;

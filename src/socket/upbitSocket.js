@@ -1,3 +1,4 @@
+var socket;
 function connectWS() {
   if (socket != undefined) {
     socket.close();

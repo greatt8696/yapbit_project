@@ -19,6 +19,14 @@ module.exports = {
         "pastel-green-blue": "#97D9E1",
         "type-lime-light": "#FFFB7D",
         "type-lime-normal": "#85FFBD",
+
+        "theme-one-to" : "#FBAB7E",
+        "theme-one-from" : "#F7CE68",
+        "theme-two-to" : "#FAD961",
+        "theme-two-from" : "#F76B1C",
+        "theme-one-from" : "#F7CE68",
+        "theme-three-to" : "#F7971E",
+        "theme-three-from" : "#FFD200",
       },
       //내가 원하는 blur 픽셀 지정
       blur: {},
