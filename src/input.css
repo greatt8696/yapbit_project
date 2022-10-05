@@ -1,15 +1,18 @@
 @tailwind base;
 @tailwind components;
+.on-dropdown {
+  @apply opacity-100 translate-y-0;
+}
 .off-dropdown {
-  @apply opacity-0 -translate-x-5  translate-y-2;
+  @apply opacity-0 -translate-y-52;
 }
 .theme-one {
-  @apply bg-gradient-to-t from-theme-one-to to-theme-one-from 
+  @apply bg-gradient-to-t from-theme-one-to to-theme-one-from;
 }
 .theme-two {
-  @apply bg-gradient-to-t from-theme-two-to to-theme-two-from 
+  @apply bg-gradient-to-t from-theme-two-to to-theme-two-from;
 }
 .theme-three {
-  @apply bg-gradient-to-t from-theme-three-to to-theme-three-from 
+  @apply bg-gradient-to-t from-theme-three-to to-theme-three-from;
 }
 @tailwind utilities;

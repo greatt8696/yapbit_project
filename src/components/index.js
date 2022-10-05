@@ -1,4 +1,6 @@
 import Header from "./Header";
 import Body from "./Body";
 import Post from "./Post";
-export { Header, Body, Post };
+import Orderbook from "./Orderbook";
+import Orderbooks from "./Orderbooks";
+export { Header, Body, Post, Orderbook, Orderbooks };

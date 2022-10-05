@@ -2,9 +2,12 @@ import imgUrls from "../../assets/index";
 
 const initState = {
   isLogin: true,
+  isLoading: false,
+  onModal: false,
   loginUser: { id: 0, name: "뀨", pwd: "123", imgUrl: imgUrls[0] },
   postDetail: {},
   nextPostId: 2,
+  currentValue: {},
   posts: [
     {
       id: 0,
