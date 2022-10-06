@@ -22,7 +22,19 @@ function App() {
   initDatas();
   const dispatch = useDispatch();
   const socket = new upbitSocket();
-
+  socket.onmessage = function (e) {
+    const d = socket.stringToJson(e);
+    if (d.type === "ticker") {
+      console.log(d);
+    }
+    if (d.type === "orderbook") {
+      // console.log(d);
+    }
+    if (d.type === "trade") {
+      // console.log(d);
+    }
+  };
+  console.log();
   return (
     <div className="App w-screen h-screen bg-neutral-900 text-white overflow-hidden">
       <Header />

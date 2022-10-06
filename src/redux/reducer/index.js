@@ -8,6 +8,7 @@ const initState = {
   postDetail: {},
   nextPostId: 2,
   currentValue: {},
+  coinsPrice: {},
   posts: [
     {
       id: 0,
@@ -82,6 +83,12 @@ const reducer = (state = initState, action) => {
             post.id !== payload.id ? payload : post
           ),
         ],
+      };
+    }
+    case "CHANGE_COINPRICE": {
+      return {
+        ...state,
+        coinsPrice: { ...coinsPrice, [payload.code]: payload.trade_price },
       };
     }
 
