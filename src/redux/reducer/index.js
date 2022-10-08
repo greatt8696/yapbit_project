@@ -89,11 +89,9 @@ const reducer = (state = initState, action) => {
     case "CHANGE_COIN": {
       return {
         ...state,
-        coinsPrice: state.coinsPrice.map((coin) => {
-          if (coin.code === payload.code) {
-          }
-          return coin.code === payload.code ? { ...coin, ...payload } : coin;
-        }),
+        coinsPrice: state.coinsPrice.map((coin) =>
+          coin.code === payload.code ? { ...coin, ...payload } : coin
+        ),
       };
     }
 
