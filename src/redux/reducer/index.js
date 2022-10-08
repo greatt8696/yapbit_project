@@ -85,12 +85,6 @@ const reducer = (state = initState, action) => {
         ],
       };
     }
-    case "CHANGE_COINPRICE": {
-      return {
-        ...state,
-        coinsPrice: { ...coinsPrice, [payload.code]: payload.trade_price },
-      };
-    }
 
     case "LOGIN_USER": {
       return { ...state, isLogin: true, logginUser: payload };

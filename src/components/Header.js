@@ -18,38 +18,24 @@ const Header = () => {
   const goToMywallet = () => nav("/mywallet");
 
   const dropdownRef = useRef();
+  const dropdown = dropdownRef.current;
 
   const transEndHandler = () => {
     setTransEnd(true);
   };
 
-  const click = useCallback(() => {
-    const dropdown = dropdownRef.current;
-    if (userDropdown) {
-      dropdown.classList.toggle("hidden");
-      dropdown.classList.toggle("off-dropdown");
-    } else {
-      dropdown.classList.toggle("off-dropdown");
-    }
-  }, [userDropdown]);
-
-  const enterDropDownHandler = () => {
-    setUserDropdown(!userDropdown);
-    setTransEnd(!isTransEnd);
+  const click = () => {
+    dropdown.classList.toggle("off-dropdown");
   };
 
   const leaveDropDownHandler = () => {
-    if (isTransEnd) {
-      setTransEnd(true);
-      const dropdown = dropdownRef.current;
-      setUserDropdown(false);
-      dropdown.classList.add("off-dropdown");
-    }
+    dropdown.classList.add("off-dropdown");
   };
 
   const dropdownTransitionHandler = (e) => {
     console.log(e);
   };
+
   return (
     <div>
       <div className="w-full theme-three h-16 justify-center font-bold">
@@ -117,67 +103,70 @@ const Header = () => {
             )}
             {isLogin && (
               <li className=" flex relative px-2">
-                <img
-                  onClick={click}
-                  className="hover:scale-105 transition-all cursor-pointer w-14 h-14 rounded-full my-auto mx-auto ring-4 ring-theme-one-to"
-                  src={loginUser.imgUrl}
-                ></img>
                 <div
-                  id="dropdown"
-                  ref={dropdownRef}
-                  onTransitionEnd={transEndHandler}
-                  className="absolute right-1 top-[70px] w-40 overflow-hidden rounded-lg shadow-lg transition-all off-dropdown"
+                  className="w-48 absolute top-0 right-0 h-60 z-10 group"
+                  onMouseLeave={leaveDropDownHandler}
                 >
-                  <div onMouseLeave={leaveDropDownHandler} className="w-40">
-                    <div className="relative grid gap-6 theme-three px-3 py-4 sm:gap-8 sm:p-5">
-                      <a className=" cursor-pointer -m-3 flex items-start rounded-lg p-3 hover:bg-gray-500/50 transition-all">
-                        <svg
-                          className="h-6 w-6 flex-shrink-0 text-white"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-                          />
-                        </svg>
-                        <div className="ml-4">
-                          <p
-                            className="text-base text-white font-bold"
-                            onClick={goToProfile}
+                  <img
+                    onClick={click}
+                    className="hover:scale-105 transition-all cursor-pointer w-14 h-14 rounded-full my-auto mx-auto ring-4 ring-theme-one-to z-30 absolute right-2 top-1"
+                    src={loginUser.imgUrl}
+                  />
+                  <div
+                    ref={dropdownRef}
+                    className="absolute right-1 top-[70px] w-40 overflow-hidden rounded-lg shadow-lg transition-all off-dropdown z-30"
+                  >
+                    <div className="w-40">
+                      <div className="relative grid gap-6 theme-three px-3 py-4 sm:gap-8 sm:p-5">
+                        <a className=" cursor-pointer -m-3 flex items-start rounded-lg p-3 hover:bg-gray-500/50 transition-all">
+                          <svg
+                            className="h-6 w-6 flex-shrink-0 text-white"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="1.5"
+                            stroke="currentColor"
+                            aria-hidden="true"
                           >
-                            내정보
-                          </p>
-                        </div>
-                      </a>
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                            />
+                          </svg>
+                          <div className="ml-4">
+                            <p
+                              className="text-base text-white font-bold"
+                              onClick={goToProfile}
+                            >
+                              내정보
+                            </p>
+                          </div>
+                        </a>
 
-                      <a className=" cursor-pointer -m-3 flex items-start rounded-lg p-3 hover:bg-gray-500/50 transition-all">
-                        <svg
-                          className="h-6 w-6 flex-shrink-0 text-white"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
-                          />
-                        </svg>
-                        <div className="ml-4">
-                          <p className="text-base  text-white font-bold">
-                            로그아웃
-                          </p>
-                        </div>
-                      </a>
+                        <a className=" cursor-pointer -m-3 flex items-start rounded-lg p-3 hover:bg-gray-500/50 transition-all">
+                          <svg
+                            className="h-6 w-6 flex-shrink-0 text-white"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="1.5"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+                            />
+                          </svg>
+                          <div className="ml-4">
+                            <p className="text-base  text-white font-bold">
+                              로그아웃
+                            </p>
+                          </div>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
