@@ -231,9 +231,9 @@ const coinsPrice = [];
 
 for (const [key, name] of Object.entries(initCoins.coinsName)) {
   coinsPrice.push({
-    name: name,
+    name: `${name}`,
     imgUrl: `https://static.upbit.com/logos/${key}.png`,
-    code: key,
+    code: `${key}`,
     trade_price: 0.0593,
     change: "RISE",
     change_rate: 0.0794392523,
