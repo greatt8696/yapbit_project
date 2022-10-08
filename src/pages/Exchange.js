@@ -4,8 +4,8 @@ import PricePanel from "../components/PricePanel";
 
 const Exchange = () => {
   const [isSelect, setIsSelect] = useState(false);
-  const coinsPrice = useSelector((state) => state.coinsPrice);
-  const selectedCoin = useSelector((state) => state.selectedCoin);
+  const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice);
+  const selectedCoin = useSelector((state) => state.coinReducer.selectedCoin);
   const coinListRef = useRef();
   const mainRef = useRef();
   const priceRef = useRef();
@@ -18,7 +18,6 @@ const Exchange = () => {
   }, [isSelect]);
 
   useEffect(() => {
-    console.log("@@@@@@@@@@",selectedCoin);
     if (isSelect) {
       if (priceRef.current) {
         priceRef.current.upDown === "+"
