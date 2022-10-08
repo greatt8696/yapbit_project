@@ -10,6 +10,7 @@ const initState = {
   nextPostId: 2,
   currentValue: {},
   coinsPrice: [...coinsPrice],
+  selectedCoin: {},
   posts: [
     {
       id: 0,
@@ -87,11 +88,29 @@ const reducer = (state = initState, action) => {
       };
     }
     case "CHANGE_COIN": {
+
+      const upDown = payload.change === "RISE" ? "+" : "-";
+      const changeRate = `${upDown} ${(payload.change_rate * 100).toFixed(3)} %`;
+
       return {
         ...state,
         coinsPrice: state.coinsPrice.map((coin) =>
-          coin.code === payload.code ? { ...coin, ...payload } : coin
+          coin.code === payload.code ? { ...coin, ...payload, upDown } : coin
         ),
+        selectedCoin:
+          state.selectedCoin.code === payload.code
+            ? { ...state.selectedCoin, ...payload, changeRate, upDown }
+            : state.selectedCoin,
+      };
+    }
+
+    case "SELECT_COIN": {
+      return {
+        ...state,
+        selectedCoin:
+          state.selectedCoin.trade_price !== payload.trade_price
+            ? payload
+            : state.selectedCoin,
       };
     }
 

@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
   const isLogin = useSelector((state) => state.isLogin);
   const loginUser = useSelector((state) => state.loginUser);
-  
+  const [isDropDown, setDropDown] = useState(false);
+
   const nav = useNavigate();
   const goToMain = () => nav("/");
   const goToSignin = () => nav("/signin");
@@ -17,10 +18,16 @@ const Header = () => {
 
   const dropdownRef = useRef();
 
-  const click = () => dropdownRef.current.classList.toggle("off-dropdown");
+  const click = () => {
+    setDropDown(!isDropDown);
+    console.log(isDropDown);
+    if (dropdownRef.current)
+      dropdownRef.current.classList.toggle("off-dropdown");
+  };
 
-  const leaveDropDownHandler = () =>
-    dropdownRef.current.classList.add("off-dropdown");
+  const leaveDropDownHandler = () => {
+    if (dropdownRef.current) dropdownRef.current.classList.add("off-dropdown");
+  };
 
   return (
     <div>
@@ -89,15 +96,15 @@ const Header = () => {
             )}
             {isLogin && (
               <li className=" flex relative px-2">
+                <img
+                  onClick={click}
+                  className="hover:scale-105 transition-all cursor-pointer w-14 h-14 min-w-[56px] rounded-full my-auto mx-auto ring-4 ring-theme-one-to z-30 absolute right-2 top-1"
+                  src={loginUser.imgUrl}
+                />
                 <div
                   className="w-48 absolute top-0 right-0 h-60 z-10 group"
                   onMouseLeave={leaveDropDownHandler}
                 >
-                  <img
-                    onClick={click}
-                    className="hover:scale-105 transition-all cursor-pointer w-14 h-14 rounded-full my-auto mx-auto ring-4 ring-theme-one-to z-30 absolute right-2 top-1"
-                    src={loginUser.imgUrl}
-                  />
                   <div
                     ref={dropdownRef}
                     className="absolute right-1 top-[70px] w-40 overflow-hidden rounded-lg shadow-lg transition-all off-dropdown z-30"

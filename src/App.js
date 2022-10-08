@@ -53,7 +53,6 @@ function App() {
           change_price,
           acc_trade_price_24h,
         };
-        console.log();
         dispatch({ type: "CHANGE_COIN", payload: newData });
       }
       if (data.type === "orderbook") {
