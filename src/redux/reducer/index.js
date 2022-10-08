@@ -1,4 +1,5 @@
 import imgUrls from "../../assets/index";
+import { coinsPrice } from "../../util/ticker";
 
 const initState = {
   isLogin: true,
@@ -8,7 +9,7 @@ const initState = {
   postDetail: {},
   nextPostId: 2,
   currentValue: {},
-  coinsPrice: {},
+  coinsPrice: [...coinsPrice],
   posts: [
     {
       id: 0,
@@ -83,6 +84,14 @@ const reducer = (state = initState, action) => {
             post.id !== payload.id ? payload : post
           ),
         ],
+      };
+    }
+    case "CHANGE_COIN": {
+      return {
+        ...state,
+        coinsPrice: state.coinsPrice.map((coin) =>
+          coin.code === payload.code ? {...coin, payload} : coin
+        ),
       };
     }
 

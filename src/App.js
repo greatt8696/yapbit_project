@@ -1,7 +1,6 @@
 import { Body, Header } from "./components";
 import { initDatas } from "./localdb/db";
 import { Routes, Route } from "react-router-dom";
-import connectWS from "./socket/upbitSocket";
 import {
   Main,
   Posts,
@@ -15,26 +14,57 @@ import {
 import Modal from "./pages/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import upbitSocket from "./socket/upbitSocket";
+import React, { useEffect, useRef, useState } from "react";
 
 function App() {
+  initDatas();
   const isLoading = useSelector((state) => state.isLoading);
   const onModal = useSelector((state) => state.onModal);
-  initDatas();
   const dispatch = useDispatch();
-  const socket = new upbitSocket();
-  socket.onmessage = function (e) {
-    const d = socket.stringToJson(e);
-    if (d.type === "ticker") {
-      console.log(d);
-    }
-    if (d.type === "orderbook") {
-      // console.log(d);
-    }
-    if (d.type === "trade") {
-      // console.log(d);
-    }
-  };
-  console.log();
+
+  useEffect(() => {
+    const socket = new upbitSocket();
+    socket.onmessage = function (e) {
+      const data = socket.stringToJson(e);
+      if (data.type === "ticker") {
+        const {
+          code,
+          trade_price,
+          change,
+          change_rate,
+          change_price,
+          acc_trade_price_24h,
+        } = data;
+
+        //        coinsRef[code] = {
+        //          code,
+        //          trade_price,
+        //          change,
+        //          change_rate,
+        //          change_price,
+        //          acc_trade_price_24h,
+        //        };
+
+        const setString = {
+          code,
+          trade_price,
+          change,
+          change_rate,
+          change_price,
+          acc_trade_price_24h,
+        };
+        console.log(setString);
+        dispatch({ type: "CHANGE_COIN", payload:setString });
+      }
+      if (data.type === "orderbook") {
+        // console.log(d);
+      }
+      if (data.type === "trade") {
+        // console.log(d);
+      }
+    };
+  }, []);
+
   return (
     <div className="App w-screen h-screen bg-neutral-900 text-white overflow-hidden">
       <Header />
@@ -53,4 +83,4 @@ function App() {
   );
 }
 
-export default App;
+export default React.memo(App);

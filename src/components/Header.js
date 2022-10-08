@@ -5,10 +5,8 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
   const isLogin = useSelector((state) => state.isLogin);
   const loginUser = useSelector((state) => state.loginUser);
-  const [userDropdown, setUserDropdown] = useState(false);
-  const [isTransEnd, setTransEnd] = useState();
+  
   const nav = useNavigate();
-
   const goToMain = () => nav("/");
   const goToSignin = () => nav("/signin");
   const goToPosts = () => nav("/posts");
@@ -18,23 +16,11 @@ const Header = () => {
   const goToMywallet = () => nav("/mywallet");
 
   const dropdownRef = useRef();
-  const dropdown = dropdownRef.current;
 
-  const transEndHandler = () => {
-    setTransEnd(true);
-  };
+  const click = () => dropdownRef.current.classList.toggle("off-dropdown");
 
-  const click = () => {
-    dropdown.classList.toggle("off-dropdown");
-  };
-
-  const leaveDropDownHandler = () => {
-    dropdown.classList.add("off-dropdown");
-  };
-
-  const dropdownTransitionHandler = (e) => {
-    console.log(e);
-  };
+  const leaveDropDownHandler = () =>
+    dropdownRef.current.classList.add("off-dropdown");
 
   return (
     <div>
@@ -143,7 +129,6 @@ const Header = () => {
                             </p>
                           </div>
                         </a>
-
                         <a className=" cursor-pointer -m-3 flex items-start rounded-lg p-3 hover:bg-gray-500/50 transition-all">
                           <svg
                             className="h-6 w-6 flex-shrink-0 text-white"
