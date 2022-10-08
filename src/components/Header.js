@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const isLogin = useSelector((state) => state.isLogin);
-  const loginUser = useSelector((state) => state.loginUser);
+  const isLogin = useSelector((state) => state.loginReducer.isLogin);
+  const loginUser = useSelector((state) => state.loginReducer.loginUser);
   const [isDropDown, setDropDown] = useState(false);
 
   const nav = useNavigate();
@@ -69,7 +69,7 @@ const Header = () => {
               onClick={goToPosts}
             >
               <a className="my-auto text-lg mx-auto w-full text-center group-hover:text-orange-700 group-hover:bg-white/0 rounded-lg group-hover:animate-wiggle transition-all">
-                게시판
+                투자랭킹
               </a>
             </li>
           </ul>
