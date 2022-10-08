@@ -1,8 +1,7 @@
-import React from "react";
-import { coinsPrice } from "../util/ticker";
+import React, { useEffect, useRef } from "react";
 
 const PricePanel = (props) => {
-  console.log("랜더링횟수");
+  // console.log("랜더링횟수");
   const {
     code,
     trade_price,
@@ -10,17 +9,27 @@ const PricePanel = (props) => {
     change_rate,
     change_price,
     acc_trade_price_24h,
-    name, 
-    imgUrl
+    name,
   } = props.coin;
-  
+
   const changeMark = change === "RISE" ? "+" : "-";
   const changeRate = `${changeMark} ${(change_rate * 100).toFixed(3)} %`;
+  const panelRef = useRef();
+  const anmatieEndHandler = () => {
+    panelRef.current.classList.remove("animate-wiggle-once");
+  };
+
+  useEffect(() => {
+    if (panelRef.current) panelRef.current.classList.add("animate-wiggle-once");
+  }, [trade_price]);
 
   return (
-    <div className="m-2 p-4 bg-slate-400/50 rounded-lg">
-      <div>{code}</div>
-      <img src={imgUrl}></img>
+    <div
+      className="m-1 p-3 bg-slate-400/50 rounded-lg transition-all"
+      onAnimationEnd={anmatieEndHandler}
+      ref={panelRef}
+    >
+      <div>{name}</div>
       <div>{trade_price}</div>
       <div>{changeRate}</div>
       <div>{change_price}</div>

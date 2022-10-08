@@ -36,6 +36,11 @@ module.exports = {
         wiggle: "wiggle 0.2s ease-in-out infinite",
         "bounce-short": "bounce 0.2s ease-in-out infinite",
       },
+      animation: {
+        "wiggle-once": "wiggle 0.2s ease-in-out 2",
+        "bounce-short": "bounce 0.2s ease-in-out infinite",
+      },
+
 
       // 내가 원하는 animation-keyframes 지정
       keyframes: {

@@ -1,5 +1,13 @@
 @tailwind base;
 @tailwind components;
+
+.blink-green {
+  @apply opacity-100 translate-y-0;
+}
+.blink-red {
+  @apply opacity-100 translate-y-0;
+}
+
 .on-dropdown {
   @apply opacity-100 translate-y-0;
 }
