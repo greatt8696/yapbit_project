@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
@@ -7,9 +7,11 @@ const Header = () => {
   const loginUser = useSelector((state) => state.loginReducer.loginUser);
   const [isDropDown, setDropDown] = useState(false);
 
+  const dispatch = useDispatch();
+
   const nav = useNavigate();
   const goToMain = () => nav("/");
-  const goToSignin = () => nav("/signin");
+  const goToSignUp = () => nav("/signUp");
   const goToPosts = () => nav("/posts");
   const goToExchange = () => nav("/exchange");
   const goToLogin = () => nav("/login");
@@ -27,6 +29,11 @@ const Header = () => {
 
   const leaveDropDownHandler = () => {
     if (dropdownRef.current) dropdownRef.current.classList.add("off-dropdown");
+  };
+
+  const logoutHandler = () => {
+    dispatch({ type: "LOGOUT_USER" });
+    goToMain()
   };
 
   return (
@@ -77,7 +84,7 @@ const Header = () => {
             {!isLogin && (
               <li
                 className="w-24 flex items-stretch cursor-pointer"
-                onClick={goToSignin}
+                onClick={goToSignUp}
               >
                 <a className="my-auto text-lg mx-auto w-full text-center">
                   회원가입
@@ -153,7 +160,10 @@ const Header = () => {
                             />
                           </svg>
                           <div className="ml-4">
-                            <p className="text-base  text-white font-bold">
+                            <p
+                              className="text-base  text-white font-bold"
+                              onClick={logoutHandler}
+                            >
                               로그아웃
                             </p>
                           </div>

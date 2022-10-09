@@ -6,7 +6,7 @@ import {
   Posts,
   Exchange,
   Login,
-  Signin,
+  SignUp,
   MyWallet,
   Loading,
   Profile,
@@ -56,10 +56,14 @@ function App() {
         dispatch({ type: "CHANGE_COIN", payload: newData });
       }
       if (data.type === "orderbook") {
-        // console.log(d);
-      }
-      if (data.type === "trade") {
-        // console.log(d);
+        const { code, orderbook_units, total_ask_size, total_bid_size } = data;
+        const newData = {
+          code,
+          orderbook_units,
+          total_ask_size,
+          total_bid_size,
+        };
+        dispatch({ type: "CHANGE_ORDERBOOK", payload: newData });
       }
     };
   }, []);
@@ -70,7 +74,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signin" element={<Signin />} />
+        <Route path="/signUp" element={<SignUp />} />
         <Route path="/posts" element={<Posts />} />
         <Route path="/exchange" element={<Exchange />} />
         <Route path="/myWallet" element={<MyWallet />} />

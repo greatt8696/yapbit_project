@@ -1,11 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { Orderbooks } from "../components";
 import PricePanel from "../components/PricePanel";
 
 const Exchange = () => {
   const [isSelect, setIsSelect] = useState(false);
   const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice);
   const selectedCoin = useSelector((state) => state.coinReducer.selectedCoin);
+  const selectedOrderbook = useSelector(
+    (state) => state.coinReducer.selectedOrderbook
+  );
   const coinListRef = useRef();
   const mainRef = useRef();
   const priceRef = useRef();
@@ -66,7 +70,9 @@ const Exchange = () => {
               ({selectedCoin?.changeRate})
             </h1>
           </div>
-          <div className="w-full h-3/5 row-span-3 bg-slate-500 m-3 rounded-lg"></div>
+          <div className="w-full h-3/5 row-span-3 bg-slate-500 m-3 rounded-lg">
+            <Orderbooks orderbooks={selectedOrderbook} />
+          </div>
           <div className="w-full h-1/5 row-span-1 bg-slate-500  m-3 mb-5 rounded-lg"></div>
         </div>
       )}
@@ -80,7 +86,7 @@ const Exchange = () => {
             coin={coin}
             setIsSelect={setIsSelect}
             isSelect={isSelect}
-          ></PricePanel>
+          />
         ))}
       </div>
     </div>
