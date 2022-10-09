@@ -17,12 +17,12 @@ const PricePanel = (props) => {
   } = props.coin;
 
   const upDown = change === "RISE" ? "+" : "-";
-  const changeRate = `${upDown} ${(change_rate * 100).toFixed(3)} %`;
+  const changeRate = `${upDown} ${(change_rate * 100).toFixed(2)} %`;
   const panelRef = useRef();
 
 
   const clickHandler = () => {
-    //console.log(selectedCoin);
+    console.log(selectedCoin.code ,code);
     if (selectedCoin?.code === code) {
       setIsSelect(!isSelect);
     } else if (selectedCoin?.code !== code) {
@@ -72,7 +72,7 @@ const PricePanel = (props) => {
 
   return (
     <div
-      className="m-1 p-2 bg-slate-400/50 rounded-lg font-bold text-[5px] min-w-[99px]  max-w-[99px] cursor-pointer"
+      className="p-2 bg-slate-400/20 rounded-lg font-bold text-[5px] min-w-[99px]  max-w-[99px] cursor-pointer hover:scale-110"
       onAnimationEnd={anmatieEndHandler}
       onClick={clickHandler}
       ref={panelRef}

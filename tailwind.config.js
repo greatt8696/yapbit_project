@@ -1,9 +1,18 @@
 /** @type {import('tailwindcss').Config} */
+
+const widths = {}
+for (let idx = 0; idx < 100; idx++) widths[`p-${idx}`] = `${idx} %`
+
 module.exports = {
   content: ["./src/**/*.{js, jsx, ts,tsx}"],
   theme: {
     extend: {
       ///내가 원하는 색상을 지정
+
+      spacing:{
+        ...widths
+      },
+
       colors: {
         "type-one-blue": "#4158D0",
         "type-one-puple": "#C850C0",
@@ -41,6 +50,8 @@ module.exports = {
         "blink-red": "blink-red 0.4s ease-in-out 1",
         "blink-text-green": "blink-text-green 0.4s ease-in-out 1",
         "blink-text-red": "blink-text-red 0.4s ease-in-out 1",
+        "blink-ba-green": "blink-ba-green 0.6s ease-in-out 1",
+        "blink-ba-red": "blink-ba-red 0.6s ease-in-out 1",
       },
 
       // 내가 원하는 animation-keyframes 지정
@@ -54,19 +65,32 @@ module.exports = {
             "background-color": "transparent",
             transform: "rotate(-3deg)",
           },
-          "50%": { "background-color": "#228B22", transform: "rotate(3deg)" },
+          "50%": { "background-color": "#15803d", transform: "rotate(3deg)" },
         },
         "blink-red": {
           "0%, 100%": {
             "background-color": "transparent",
             transform: "rotate(-3deg)",
           },
-          "50%": { "background-color": "#B22222" },
+          "50%": { "background-color": "#B22222", transform: "rotate(3deg)" },
+        },
+
+        "blink-bar-green": {
+          "0%, 100%": {
+            "background-color": "transparent",
+          },
+          "50%": { "background-color": "#15803d"},
+        },
+        "blink-bar-red": {
+          "0%, 100%": {
+            "background-color": "transparent",
+          },
+          "50%": { "background-color": "#b91c1c" },
         },
 
         "blink-text-green": {
           "0%, 100%": { "color": "white" , transform: "scale(1)"},
-          "50%": { "color": "#228B22" , transform: "scale(1.2)"},
+          "50%": { "color": "#15803d" , transform: "scale(1.2)"},
         },
         "blink-text-red": {
           "0%, 100%": { "color": "white", transform: "scale(1)" },

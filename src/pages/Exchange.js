@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Orderbooks } from "../components";
 import PricePanel from "../components/PricePanel";
+import ExchangeInputs from "../components/ExchangeInputs";
 
 const Exchange = () => {
   const [isSelect, setIsSelect] = useState(false);
@@ -37,10 +38,10 @@ const Exchange = () => {
   };
 
   return (
-    <div className="grid grid-cols-5 grid-flow-col gap-4 w-full h-full my-5">
+    <div className="grid grid-cols-5 grid-flow-col gap-4 mx-auto max-w-7xl h-full my-5">
       {isSelect && (
         <div className="gird col-span-4  row-span-2" ref={mainRef}>
-          <div className=" flex gap-5 w-full h-[60px] row-span-3 bg-slate-500 m-3 rounded-lg text-center text-xl align-middle">
+          <div className=" flex gap-5 w-full h-[60px] row-span-3 bg-slate-100/10 m-3 rounded-lg text-center text-xl align-middle">
             <h1 className=" transition-all ml-5 my-auto align-middle text-3xl font-bold">
               {selectedCoin?.name}
             </h1>
@@ -50,7 +51,7 @@ const Exchange = () => {
             <h1
               ref={priceRef}
               onAnimationEnd={animationEnd}
-              className="transition-all ml-5 my-auto align-middle text-3xl"
+              className="transition-all ml-5 my-auto align-middle text-3xl font-bold"
             >
               {selectedCoin?.trade_price
                 ?.toString()
@@ -67,10 +68,12 @@ const Exchange = () => {
               ({selectedCoin?.changeRate})
             </h1>
           </div>
-          <div className="w-full h-3/5 row-span-3 bg-slate-500 m-3 rounded-lg">
+          <div className="w-full h-3/5 row-span-3 bg-slate-100/10 m-3 rounded-lg">
             <Orderbooks />
           </div>
-          <div className="w-full h-1/5 row-span-1 bg-slate-500  m-3 mb-5 rounded-lg"></div>
+          <div className="w-full h-1/5 row-span-1 bg-slate-100/10  m-3 mb-5 rounded-lg p-3">
+            <ExchangeInputs></ExchangeInputs>
+          </div>
         </div>
       )}
       <div

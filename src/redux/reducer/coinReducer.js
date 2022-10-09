@@ -1,12 +1,17 @@
 import { coinsPrice } from "../../util/ticker";
 
+const ORDERBOOK_SIZE = 14;
+const orderbookSlot = { ask: [], bid: [] };
+for (let idx = 0; idx < ORDERBOOK_SIZE; idx++) {
+  orderbookSlot.ask.push({ ask_price: 1, ask_size: 1 });
+  orderbookSlot.bid.push({ ask_price: 1, ask_size: 1 });
+}
+
 const initState = {
   coinsPrice: [...coinsPrice],
   selectedCoin: {},
-  orders: [],
-  history: [{}],
   coinsOrderbook: [...coinsPrice],
-  selectedOrderbook: {},
+  selectedOrderbook: { ...orderbookSlot },
 };
 
 const coinReducer = (state = initState, action) => {
@@ -16,7 +21,7 @@ const coinReducer = (state = initState, action) => {
     case "CHANGE_COIN": {
       const upDown = payload.change === "RISE" ? "+" : "-";
       const changeRate = `${upDown} ${(payload.change_rate * 100).toFixed(
-        3
+        2
       )} %`;
       return {
         ...state,
@@ -33,16 +38,30 @@ const coinReducer = (state = initState, action) => {
     case "SELECT_COIN": {
       return {
         ...state,
-        selectedCoin:
-          state.selectedCoin.trade_price !== payload.trade_price
-            ? payload
-            : state.selectedCoin,
+        selectedCoin: payload,
       };
     }
 
     case "CHANGE_ORDERBOOK": {
-      state.coinsOrderbook.map((coin) => {
-      });
+      //console.log("CHANGE_ORDERBOOK", state.selectedCoin.code);
+      //if (state.selectedCoin.code === payload.code)
+      //  console.log(state.selectedCoin.code === payload.code && { ...payload });
+
+      const splitOrders = {
+        ask: [],
+        bid: [],
+        code: payload.code,
+        total_ask_size: payload.total_ask_size,
+        total_bid_size: payload.total_bid_size,
+      };
+
+      payload.orderbook_units.forEach(
+        ({ ask_price, ask_size, bid_price, bid_size }) => {
+          splitOrders.ask.push({ ask_price, ask_size });
+          splitOrders.bid.push({ bid_price, bid_size });
+        }
+      );
+
       return {
         ...state,
         coinsOrderbook: state.coinsOrderbook.map((coin) =>
@@ -50,7 +69,7 @@ const coinReducer = (state = initState, action) => {
         ),
         selectedOrderbook:
           state.selectedCoin.code === payload.code
-            ? { ...state.selectedOrderbook, ...payload }
+            ? splitOrders
             : state.selectedOrderbook,
       };
     }

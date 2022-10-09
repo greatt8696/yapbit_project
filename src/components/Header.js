@@ -19,21 +19,25 @@ const Header = () => {
   const goToMywallet = () => nav("/mywallet");
 
   const dropdownRef = useRef();
+  const hoverRangeRef = useRef();
 
   const click = () => {
     setDropDown(!isDropDown);
-    console.log(isDropDown);
+    hoverRangeRef.current.classList.remove("hidden");
     if (dropdownRef.current)
       dropdownRef.current.classList.toggle("off-dropdown");
   };
 
   const leaveDropDownHandler = () => {
     if (dropdownRef.current) dropdownRef.current.classList.add("off-dropdown");
+    setTimeout(() => {
+      hoverRangeRef.current.classList.add("hidden");
+    }, 500);
   };
 
   const logoutHandler = () => {
     dispatch({ type: "LOGOUT_USER" });
-    goToMain()
+    goToMain();
   };
 
   return (
@@ -109,7 +113,8 @@ const Header = () => {
                   src={loginUser.imgUrl}
                 />
                 <div
-                  className="w-48 absolute top-0 right-0 h-60 z-10 group"
+                  ref={hoverRangeRef}
+                  className="w-48 absolute top-0 right-0 h-60 z-10 group hidden"
                   onMouseLeave={leaveDropDownHandler}
                 >
                   <div
