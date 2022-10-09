@@ -1,7 +1,7 @@
 import React from "react";
 
 const Orderbook = ({ orderbook }) => {
-  return <div>{JSON.stringify(orderbook)}</div>;
+  return <div className="bg-green-600 ">{JSON.stringify(orderbook)}</div>;
 };
 
-export default Orderbook;
+export default React.memo(Orderbook);

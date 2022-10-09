@@ -7,9 +7,6 @@ const Exchange = () => {
   const [isSelect, setIsSelect] = useState(false);
   const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice);
   const selectedCoin = useSelector((state) => state.coinReducer.selectedCoin);
-  const selectedOrderbook = useSelector(
-    (state) => state.coinReducer.selectedOrderbook
-  );
   const coinListRef = useRef();
   const mainRef = useRef();
   const priceRef = useRef();
@@ -17,8 +14,8 @@ const Exchange = () => {
 
   useEffect(() => {
     coinListRef.current.classList = isSelect
-      ? "my-1 col-span-1 flex flex-wrap content-around justify-center align-middle gap-3 transition-all overflow-y-scroll h-full transition-all"
-      : "my-1 col-span-5 flex flex-wrap content-around justify-center align-middle gap-3 transition-all overflow-y-scroll h-full transition-all";
+      ? "col-span-1 row-span-2 h-full overflow-y-scroll "
+      : "col-span-5 row-span-2 h-full overflow-y-scroll ";
   }, [isSelect]);
 
   useEffect(() => {
@@ -71,23 +68,25 @@ const Exchange = () => {
             </h1>
           </div>
           <div className="w-full h-3/5 row-span-3 bg-slate-500 m-3 rounded-lg">
-            <Orderbooks orderbooks={selectedOrderbook} />
+            <Orderbooks />
           </div>
           <div className="w-full h-1/5 row-span-1 bg-slate-500  m-3 mb-5 rounded-lg"></div>
         </div>
       )}
       <div
-        className="col-span-5 flex flex-wrap content-around justify-center align-middle gap-3 transition-all overflow-y-scroll h-full"
+        className="col-span-5 row-span-2 h-full overflow-y-scroll "
         ref={coinListRef}
       >
-        {coinsPrice.map((coin) => (
-          <PricePanel
-            key={coin.code}
-            coin={coin}
-            setIsSelect={setIsSelect}
-            isSelect={isSelect}
-          />
-        ))}
+        <div className="flex flex-wrap w-full justify-center align-middle gap-3 pt-2 pb-4">
+          {coinsPrice.map((coin) => (
+            <PricePanel
+              key={coin.code}
+              coin={coin}
+              setIsSelect={setIsSelect}
+              isSelect={isSelect}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
