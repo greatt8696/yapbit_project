@@ -7,15 +7,11 @@ const Orderbooks = () => {
   const [isLoading, setLoading] = useState(false);
   const [widths, setWidths] = useState({ ask: [], bid: [] });
 
-  const orders = useSelector((state)=> state.myAssetReducer.orders)
 
   const selectedOrderbook = useSelector(
     (state) => state.coinReducer.selectedOrderbook
   );
 
-  useEffect(()=>{
-    console.log(orders);
-  }, [orders])
 
   useEffect(() => {
     const { ask, bid, code, total_ask_size, total_bid_size } =

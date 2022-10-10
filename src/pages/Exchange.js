@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Orderbooks } from "../components";
 import PricePanel from "../components/PricePanel";
 import ExchangeInputs from "../components/ExchangeInputs";
 
 const Exchange = () => {
+  const dispatch = useDispatch();
   const [isSelect, setIsSelect] = useState(false);
   const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice);
+  const orders = useSelector((state) => state.myAssetReducer.orders);
   const selectedCoin = useSelector((state) => state.coinReducer.selectedCoin);
   const coinListRef = useRef();
   const mainRef = useRef();
@@ -31,6 +33,20 @@ const Exchange = () => {
       }
     }
   }, [selectedCoin]);
+
+  useEffect(() => {
+    orders.map((order) => {
+      const find = coinsPrice.find((coin) => coin.code === order.code);
+      if (find)
+        if (
+          (find.trade_price <= order.price && order.type === "buy") ||
+          (find.trade_price >= order.price && order.type === "sell")
+        ) {
+          dispatch({ type: "SUCCESS_ORDER", payload: order });
+          dispatch({ type: "ADD_MSG", payload: order });
+        }
+    });
+  }, [orders, coinsPrice]);
 
   const animationEnd = (e) => {
     e.target.classList.remove("animate-blink-text-green");
@@ -72,7 +88,7 @@ const Exchange = () => {
             <Orderbooks />
           </div>
           <div className="w-full h-2/6 row-span-1 bg-slate-100/10  m-3 mb-5 rounded-lg p-3">
-            <ExchangeInputs/>
+            <ExchangeInputs />
           </div>
         </div>
       )}

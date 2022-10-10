@@ -1,4 +1,4 @@
-import { Body, Header } from "./components";
+import { Body, Header, MsgSlot } from "./components";
 import { initDatas } from "./localdb/db";
 import { Routes, Route } from "react-router-dom";
 import {
@@ -20,6 +20,7 @@ function App() {
   initDatas();
   const onLoading = useSelector((state) => state.uiReducer.onLoading);
   const onModal = useSelector((state) => state.uiReducer.onModal);
+  const onMsg = useSelector((state) => state.uiReducer.onMsg);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -72,7 +73,7 @@ function App() {
       </Routes>
       {onLoading && <Loading />}
       {onModal && <Modal />}
-      {}
+      {onMsg && <MsgSlot />}
     </div>
   );
 }

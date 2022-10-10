@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const OrderPanel = ({ orderbook, type }) => {
+  const dispatch = useDispatch();
   const orders = useSelector((state) => state.myAssetReducer.orders);
   const [mark, setMark] = useState(false);
   const [price, setPrice] = useState("");
@@ -19,21 +20,23 @@ const OrderPanel = ({ orderbook, type }) => {
   }
 
   useEffect(() => {
-    const se = orders.map((order) => {
+    const find = orders.find(
+      (order) =>
+        order.price === orderbook.ask_price ||
+        order.price === orderbook.bid_price
+    );
 
-      if (order.price === orderbook.ask_price) {
-        setMark(true);
-        setPrice(`${order.size} ${order.code.replace("KRW-","")}`);
-      } else if (order.price === orderbook.bid_price) {
-        setMark(true);
-        setPrice(`${order.size} ${order.code.replace("KRW-","")}`);
-      } else {
-        setMark(false);
-        setPrice(``);
-      }
+    if (find) {
+      const size = find.size;
+      const code = find.code.replace("KRW-", "");
 
-    });
-  }, [orders, orderbook]);
+      setPrice(`${size} ${code}`);
+      setMark(true);
+    } else {
+      setPrice(``);
+      setMark(false);
+    }
+  });
 
   return (
     <div>

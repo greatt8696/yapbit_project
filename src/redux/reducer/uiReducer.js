@@ -2,6 +2,7 @@
 const initState = {
   onLoading: true,
   onModal: false,
+  onMsg:true,
   modalDetails: {
     title: "",
     content: "",
@@ -29,8 +30,6 @@ const uiReducer = (state = initState, action) => {
     }
 
     case "ON_MODAL": {
-
-      console.log(payload);
       return {
         ...state,
         onModal: true,

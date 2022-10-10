@@ -60,15 +60,15 @@ const PricePanel = (props) => {
 
   return (
     <div
-      className="p-2 bg-slate-400/20 rounded-lg font-bold text-[5px] min-w-[99px]  max-w-[99px] cursor-pointer hover:scale-110"
+      className="p-2 z-0 bg-slate-400/20 rounded-lg font-bold text-[5px] min-w-[99px]  max-w-[99px] cursor-pointer hover:scale-110"
       onAnimationEnd={anmatieEndHandler}
       onClick={clickHandler}
       ref={panelRef}
     >
-      <div className="pointer-events-none">{name}</div>
+      <div className="pointer-events-none  z-0">{name}</div>
       {/* <img src={imgUrl}></img> */}
-      <div className="pointer-events-none">{trade_price}</div>
-      <div className={`${upDown === "+" ? "text-green-400" : "text-red-400"}`}>
+      <div className="pointer-events-none  z-0">{trade_price}</div>
+      <div className={`${upDown === "+" ? "text-green-400" : "text-red-400"} z-0`}>
         ({changeRate})
       </div>
     </div>

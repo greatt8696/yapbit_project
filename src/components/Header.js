@@ -80,14 +80,7 @@ const Header = () => {
                 투자내역
               </a>
             </li>
-            <li
-              className="w-24 flex items-stretch cursor-pointer group transition-all"
-              onClick={goToPosts}
-            >
-              <a className="my-auto text-lg mx-auto w-full text-center group-hover:text-orange-700 group-hover:bg-white/0 rounded-lg group-hover:animate-wiggle transition-all">
-                투자랭킹
-              </a>
-            </li>
+
           </ul>
           <ul className="flex w-96 h-full ml-auto items-stretch gap-3 justify-end">
             {!isLogin && (

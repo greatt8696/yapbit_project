@@ -114,13 +114,13 @@ const ExchangeInputs = () => {
   };
 
   const submitHandler = (e) => {
-    
-    const BuyOrSell = e.target.value
+    const BuyOrSell = e.target.value;
 
     const sendData = {
       code: selectedCoin?.code,
       size: BuyOrSell === "buy" ? inputs.size.buy : inputs.size.sell,
       price: inputs.price,
+      type: BuyOrSell,
     };
 
     // {code: "KRW-BTC", size: "1", price: 27830000}
@@ -133,9 +133,7 @@ const ExchangeInputs = () => {
           content: `${selectedCoin?.code?.replace("KRW-", "")} 를 ${
             inputs.price
           } 에 
-          ${
-            BuyOrSell === "buy" ? inputs.size.buy : inputs.size.sell
-          } 수량으로  
+          ${BuyOrSell === "buy" ? inputs.size.buy : inputs.size.sell} 수량으로  
           ${BuyOrSell === "buy" ? "매수" : "매도"} 하실뀨?`,
         },
         callbackDispatch: {
@@ -144,7 +142,7 @@ const ExchangeInputs = () => {
         },
       },
     });
-    
+
     setInputs({
       sellBuy: "buy",
       type: "limit",

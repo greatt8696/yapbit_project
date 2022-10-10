@@ -5,15 +5,11 @@ const Modal = () => {
   const dispatch = useDispatch();
   const modalDetails = useSelector((state) => state.uiReducer.modalDetails);
 
-  useEffect(() => {
-    console.log(modalDetails);
-  }, [modalDetails]);
-
   const exitHandler = () => dispatch({ type: "OFF_MODAL" });
 
   const okHandler = () => {
     const { type, payload } = modalDetails.callbackDispatch;
-    console.log({ type: type, payload: JSON.parse(payload) });
+    //console.log({ type: type, payload: JSON.parse(payload) });
     dispatch({ type: type, payload: JSON.parse(payload) });
   };
 
@@ -37,12 +33,6 @@ const Modal = () => {
             className="col-span-1 rounded-md py-1 border-2 font-bold  border-red-500 text-red-500 hover:text-white hover:bg-red-500 transition-all hover:animate-wiggle"
           >
             아니요
-          </button>
-          <button
-            onClick={exitHandler}
-            className="col-span-2 rounded-md py-1 border-2 font-bold  border-green-500 text-green-500 hover:text-white hover:bg-green-500 transition-all hover:animate-wiggle"
-          >
-            알겠어요
           </button>
         </div>
       </div>

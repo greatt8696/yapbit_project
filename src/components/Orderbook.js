@@ -46,7 +46,7 @@ const Orderbook = ({ orderbook, type, widths, idx }) => {
 
   return (
     <div
-      className="relative cursor-pointer rounded group hover:bg-black/20 transition-all duration-100 text-sm py-1"
+      className="relative cursor-pointer rounded group hover:bg-black/20 transition-all duration-100 text-sm"
       onClick={clickHandler}
     >
       <p className={sizeStyle}>{data.size}</p>
