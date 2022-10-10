@@ -7,9 +7,7 @@ const init = coinsPrice.map(({ code }) => {
 const initState = {
   myAssets: [
     ...init,
-    { code: "KRW", size: 27710000, price: 1, entryPrice: 1, name:"원화" },
-    { code: "KRW-BTC", size: 1, price: 27830000, entryPrice: 19000000 },
-    { code: "KRW-ETH", size: 12, price: 1880000, entryPrice: 1000000 },
+    { code: "KRW", size: 200000000, price: 1, entryPrice: 1, name: "원화" },
   ],
 
   orders: [
@@ -71,13 +69,11 @@ const myAssetReducer = (state = initState, action) => {
               size: asset.size + parseFloat(-plusMinus * payload.size),
               entryPrice:
                 plusMinus === -1
-                  ? asset.entryPrice * asset.size +
-                    (parseFloat(payload.price) * parseFloat(payload.size)) / 2
+                  ? (asset.entryPrice * asset.size +
+                      parseFloat(payload.price) * parseFloat(payload.size)) /
+                    2
                   : asset.entryPrice,
-              price:
-                plusMinus === -1
-                  ? payload.price
-                  : asset.entryPrice,
+              price: plusMinus === -1 ? payload.price : asset.entryPrice,
             };
           } else if (asset.code === payload.code && payload.type === "sell") {
             return {
