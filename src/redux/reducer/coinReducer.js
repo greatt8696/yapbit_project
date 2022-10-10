@@ -12,6 +12,7 @@ const initState = {
   selectedCoin: {},
   coinsOrderbook: [...coinsPrice],
   selectedOrderbook: { ...orderbookSlot },
+  
 };
 
 const coinReducer = (state = initState, action) => {

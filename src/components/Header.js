@@ -10,13 +10,18 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const nav = useNavigate();
-  const goToMain = () => nav("/");
-  const goToSignUp = () => nav("/signUp");
-  const goToPosts = () => nav("/posts");
-  const goToExchange = () => nav("/exchange");
-  const goToLogin = () => nav("/login");
-  const goToProfile = () => nav("/profile");
-  const goToMywallet = () => nav("/mywallet");
+
+  const navWrap = (path) => {
+    dispatch({ type: "ON_LOADING" });
+    nav(path);
+  };
+  const goToMain = ()=> navWrap("/");
+  const goToSignUp = () => navWrap("/signUp");
+  const goToPosts = () => navWrap("/posts");
+  const goToExchange = () => navWrap("/exchange");
+  const goToLogin = () => navWrap("/login");
+  const goToProfile = () => navWrap("/profile");
+  const goToMywallet = () => navWrap("/mywallet");
 
   const dropdownRef = useRef();
   const hoverRangeRef = useRef();

@@ -6,6 +6,7 @@ import msgReducer from "./msgReducer";
 import postReducer from "./postReducer";
 import signUpReducer from "./signUpReducer";
 import uiReducer from "./uiReducer";
+import myAssetReducer from "./myAssetReducer";
 
 const rootReducer = combineReducers({
   coinReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   postReducer,
   signUpReducer,
   uiReducer,
+  myAssetReducer,
 });
 
 export default rootReducer;

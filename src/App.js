@@ -18,8 +18,8 @@ import React, { useEffect, useRef, useState } from "react";
 
 function App() {
   initDatas();
-  const isLoading = useSelector((state) => state.isLoading);
-  const onModal = useSelector((state) => state.onModal);
+  const onLoading = useSelector((state) => state.uiReducer.onLoading);
+  const onModal = useSelector((state) => state.uiReducer.onModal);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,16 +35,6 @@ function App() {
           change_price,
           acc_trade_price_24h,
         } = data;
-
-        //        coinsRef[code] = {
-        //          code,
-        //          trade_price,
-        //          change,
-        //          change_rate,
-        //          change_price,
-        //          acc_trade_price_24h,
-        //        };
-
         const newData = {
           code,
           trade_price,
@@ -69,7 +59,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App w-screen h-screen bg-neutral-900 text-white overflow-hidden">
+    <div className="App w-screen h-screen bg-neutral-900 text-white overflow-hidden relative">
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
@@ -80,7 +70,7 @@ function App() {
         <Route path="/myWallet" element={<MyWallet />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
-      {isLoading && <Loading />}
+      {onLoading && <Loading />}
       {onModal && <Modal />}
     </div>
   );

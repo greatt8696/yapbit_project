@@ -22,38 +22,26 @@ const PricePanel = (props) => {
 
 
   const clickHandler = () => {
-    console.log(selectedCoin.code ,code);
     if (selectedCoin?.code === code) {
       setIsSelect(!isSelect);
     } else if (selectedCoin?.code !== code) {
       setIsSelect(true);
-      dispatch({
-        type: "SELECT_COIN",
-        payload: {
-          code,
-          trade_price,
-          change,
-          changeRate,
-          change_price,
-          acc_trade_price_24h,
-          name,
-        },
-      });
+
     } else {
       setIsSelect(!isSelect);
-      dispatch({
-        type: "SELECT_COIN",
-        payload: {
-          code,
-          trade_price,
-          change,
-          changeRate,
-          change_price,
-          acc_trade_price_24h,
-          name,
-        },
-      });
     }
+    dispatch({
+      type: "SELECT_COIN",
+      payload: {
+        code,
+        trade_price,
+        change,
+        changeRate,
+        change_price,
+        acc_trade_price_24h,
+        name,
+      },
+    });
   };
 
   const anmatieEndHandler = () => {

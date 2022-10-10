@@ -1,9 +1,14 @@
 import { coinsPrice } from "../../util/ticker";
 
 const initState = {
-  isLoading: false,
+  onLoading: true,
   onModal: false,
-  modalDetails: {},
+  modalDetails: {
+    title: "",
+    content: "",
+    button: { success: "", fail: "", confirm: "" },
+  },
+  modalResult:{}
 };
 
 const uiReducer = (state = initState, action) => {
@@ -13,19 +18,20 @@ const uiReducer = (state = initState, action) => {
     case "ON_LOADING": {
       return {
         ...state,
-        isLoading: true,
+        onLoading: true,
       };
     }
     case "OFF_LOADING": {
       return {
         ...state,
-        isLoading: false,
+        onLoading: false,
       };
     }
     case "ON_MODAL": {
       return {
         ...state,
         onModal: true,
+        modalDetails: payload,
       };
     }
     case "OFF_MODAL": {

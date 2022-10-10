@@ -57,8 +57,8 @@ const Orderbooks = () => {
       )}
 
       {!isLoading && (
-        <div className="w-full h-full grid grid-cols-6 gap-2 p-3">
-          <div className="col-span-1 bg-green-200/5 rounded-md flex flex-col-reverse justify-between gap-1 ">
+        <div className="w-full h-full grid grid-cols-6 p-3">
+          <div className="col-span-1 bg-green-200/5 rounded-md flex flex-col-reverse justify-between  ">
             {selectedOrderbook.bid?.map((slot, idx) => (
               <OrderPanel
                 key={`bid_main_${idx}`}
@@ -68,7 +68,7 @@ const Orderbooks = () => {
               />
             ))}
           </div>
-          <div className="col-span-2 bg-green-200/5 rounded-md flex flex-col-reverse justify-between gap-1">
+          <div className="col-span-2 bg-green-200/5 rounded-md flex flex-col-reverse justify-between">
             {selectedOrderbook.bid?.map((slot, idx) => (
               <Orderbook
                 key={`bid_detail_${idx}`}
@@ -80,7 +80,7 @@ const Orderbooks = () => {
             ))}
           </div>
 
-          <div className="col-span-2 bg-red-200/5 rounded-md flex flex-col-reverse justify-between gap-1">
+          <div className="col-span-2 bg-red-200/5 rounded-md flex flex-col-reverse justify-between ">
             {selectedOrderbook.ask?.map((slot, idx) => (
               <Orderbook
                 key={`ask_main_${idx}`}
@@ -91,7 +91,7 @@ const Orderbooks = () => {
               />
             ))}
           </div>
-          <div className="col-span-1 bg-red-200/5 rounded-md flex flex-col-reverse justify-between gap-1 ">
+          <div className="col-span-1 bg-red-200/5 rounded-md flex flex-col-reverse justify-between  ">
             {selectedOrderbook.ask?.map((slot, idx) => (
               <OrderPanel
                 key={`ask_detail_${idx}`}

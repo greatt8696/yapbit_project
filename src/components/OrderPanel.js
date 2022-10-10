@@ -1,6 +1,6 @@
 import React from "react";
 
-const orderPanel = () => {
+const OrderPanel = () => {
   return (
     <div>
       <span className="flex h-3 w-3 relative m-1">
@@ -11,4 +11,4 @@ const orderPanel = () => {
   );
 };
 
-export default orderPanel;
+export default React.memo(OrderPanel);
