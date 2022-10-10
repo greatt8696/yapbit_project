@@ -3,18 +3,16 @@ import { initDatas } from "./localdb/db";
 import { Routes, Route } from "react-router-dom";
 import {
   Main,
-  Posts,
   Exchange,
   Login,
   SignUp,
   MyWallet,
   Loading,
-  Profile,
 } from "./pages";
 import Modal from "./pages/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import upbitSocket from "./socket/upbitSocket";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect} from "react";
 
 function App() {
   initDatas();
@@ -66,10 +64,8 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
-        <Route path="/posts" element={<Posts />} />
         <Route path="/exchange" element={<Exchange />} />
         <Route path="/myWallet" element={<MyWallet />} />
-        <Route path="/profile" element={<Profile />} />
       </Routes>
       {onLoading && <Loading />}
       {onModal && <Modal />}
