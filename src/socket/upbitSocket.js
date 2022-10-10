@@ -144,14 +144,10 @@ function upbitSocket() {
   socket.closeWS = () => {
     if (socket !== undefined) {
       socket.close();
-      socket = undefined;
     }
   };
   socket.onopen = (e) => {
     socket.filterRequest();
-  };
-  socket.onclose = (e) => {
-    socket = undefined;
   };
   return socket;
 }

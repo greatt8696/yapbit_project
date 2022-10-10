@@ -1,9 +1,8 @@
-
 const initState = {
-
   myAssets: [
-    { code: "KRW", size: 10000000, price: 1, entryPrice: 1 },
+    { code: "KRW", size: 27710000, price: 1, entryPrice: 1 },
     { code: "KRW-BTC", size: 1, price: 27830000, entryPrice: 19000000 },
+    { code: "KRW-ETH", size: 12, price: 1880000, entryPrice: 1000000 },
   ],
 
   orders: [
@@ -12,11 +11,9 @@ const initState = {
       code: "KRW-BTC",
       size: "1",
       price: 27830000,
-      entryPrice: 19000000,
     },
   ],
   orderId: 1,
-  
 };
 
 const myAssetReducer = (state = initState, action) => {
@@ -24,11 +21,11 @@ const myAssetReducer = (state = initState, action) => {
 
   switch (type) {
     case "ADD_ORDER": {
-      const addOrder = { payload, id: state.orderId };
-      state.orderId += 1;
+      const addOrder = { ...payload, id: state.orderId };
+      state.orderId++;
       return {
         ...state,
-        orders: addOrder,
+        orders: [...state.orders, addOrder],
       };
     }
 

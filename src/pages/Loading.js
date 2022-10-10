@@ -10,8 +10,8 @@ const Loading = () => {
     loadingRef.current.classList.add("opacity-0")
     setTimeout(() => {
       dispatch({ type: "OFF_LOADING" });
-    }, 500);
-  }, 2000);
+    },1); //500
+  }, 2); //2000
 
   return (
     <div ref= {loadingRef}className="absolute top-0 w-screen h-screen bg-black/75 z-50 backdrop-blur-sm transition-opacity">

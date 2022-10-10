@@ -12,7 +12,8 @@ const initState = {
   selectedCoin: {},
   coinsOrderbook: [...coinsPrice],
   selectedOrderbook: { ...orderbookSlot },
-  
+  selectedOrderPrice: { },
+
 };
 
 const coinReducer = (state = initState, action) => {
@@ -40,6 +41,13 @@ const coinReducer = (state = initState, action) => {
       return {
         ...state,
         selectedCoin: payload,
+      };
+    }
+
+    case "SELECT_ORDERBOOK":{
+      return {
+        ...state,
+        selectedOrderPrice: payload,
       };
     }
 

@@ -7,9 +7,15 @@ const Orderbooks = () => {
   const [isLoading, setLoading] = useState(false);
   const [widths, setWidths] = useState({ ask: [], bid: [] });
 
+  const orders = useSelector((state)=> state.myAssetReducer.orders)
+
   const selectedOrderbook = useSelector(
     (state) => state.coinReducer.selectedOrderbook
   );
+
+  useEffect(()=>{
+    console.log(orders);
+  }, [orders])
 
   useEffect(() => {
     const { ask, bid, code, total_ask_size, total_bid_size } =
@@ -57,8 +63,8 @@ const Orderbooks = () => {
       )}
 
       {!isLoading && (
-        <div className="w-full h-full grid grid-cols-6 p-3">
-          <div className="col-span-1 bg-green-200/5 rounded-md flex flex-col-reverse justify-between  ">
+        <div className="w-full h-full grid grid-cols-6 p-2">
+          <div className="col-span-1 bg-green-200/5 rounded-md flex flex-col-reverse justify-between">
             {selectedOrderbook.bid?.map((slot, idx) => (
               <OrderPanel
                 key={`bid_main_${idx}`}

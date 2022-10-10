@@ -38,7 +38,7 @@ const Exchange = () => {
   };
 
   return (
-    <div className="grid grid-cols-5 grid-flow-col gap-4 mx-auto max-w-7xl h-full my-2">
+    <div className="grid grid-cols-5 grid-flow-col gap-4 mx-auto max-w-7xl h-full my-">
       {isSelect && (
         <div className="gird col-span-4  row-span-2" ref={mainRef}>
           <div className=" flex gap-5 w-full h-[60px] row-span-3 bg-slate-100/10 m-3 rounded-lg text-center text-xl align-middle">
@@ -68,11 +68,11 @@ const Exchange = () => {
               ({selectedCoin?.changeRate})
             </h1>
           </div>
-          <div className="w-full h-3/6 row-span-3 bg-slate-100/10 m-3 rounded-lg">
+          <div className="w-full h-3/6 row-span-3 bg-slate-100/10 m-3 rounded-lg p-1">
             <Orderbooks />
           </div>
           <div className="w-full h-2/6 row-span-1 bg-slate-100/10  m-3 mb-5 rounded-lg p-3">
-            <ExchangeInputs selectedCoin={selectedCoin}/>
+            <ExchangeInputs/>
           </div>
         </div>
       )}

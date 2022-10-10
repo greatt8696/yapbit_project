@@ -65,14 +65,12 @@ const PricePanel = (props) => {
       onClick={clickHandler}
       ref={panelRef}
     >
-      <div>{name}</div>
+      <div className="pointer-events-none">{name}</div>
       {/* <img src={imgUrl}></img> */}
-      <div>{trade_price}</div>
+      <div className="pointer-events-none">{trade_price}</div>
       <div className={`${upDown === "+" ? "text-green-400" : "text-red-400"}`}>
         ({changeRate})
       </div>
-      {/* <div>{change_price}</div> */}
-      {/* <div>{parseInt(acc_trade_price_24h / 1000000)} 백만</div> */}
     </div>
   );
 };

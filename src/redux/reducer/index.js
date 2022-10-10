@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import { coinsPrice } from "../../util/ticker";
 import coinReducer from "./coinReducer";
 import loginReducer from "./loginReducer";
 import msgReducer from "./msgReducer";
