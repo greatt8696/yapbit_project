@@ -39,8 +39,10 @@ const PostDetails = () => {
     nav("/postBoard");
   };
 
+  const goToBack = () => nav(-1);
+
   return (
-    <div className="w-full h-full bg-slate-900 flex">
+    <div onClick={goToBack} className="w-full h-full bg-slate-900 flex">
       <div className="mx-auto mt-12">
         <div className="w-[800px] h-[800px] bg-white/25 rounded-2xl p-5 flex flex-col gap-5">
           <div className="flex justify-between ">

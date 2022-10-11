@@ -88,10 +88,6 @@ const ChartComp = () => {
           <div className="flex w-[400px]" key={idx}>
             <div className="h-12  mx-3">{name}</div>
             <div className="h-12  mx-3">{parseInt(price * size)}</div>
-            <div className="h-12  mx-3">{`${(entryPrice <= price
-              ? (price / entryPrice) * 100
-              : -(price / entryPrice) * 100
-            ).toFixed(2)} %`}</div>
           </div>
         ))}
       </div>

@@ -26,6 +26,15 @@ const Post = (props) => {
     });
 
   const toDetailsHandler = () => {
+    if (!rock) {
+      dispatch({
+        type: "ON_DETAILS_POST",
+        payload: { ...props.post, userName: loginUser.name },
+      });
+      nav("/postDetails");
+    }
+  };
+  const detailsHandler = () => {
     dispatch({
       type: "ON_DETAILS_POST",
       payload: { ...props.post, userName: loginUser.name },
@@ -33,12 +42,16 @@ const Post = (props) => {
     nav("/postDetails");
   };
 
-  useEffect(() => {
-    console.log("Post", loginUser);
-  }, [loginUser]);
+  const [rock, setRock] = useState(false);
+
+  const enterHandler = () => setRock(true);
+  const leaveHandler = () => setRock(false);
 
   return (
-    <tr className="text-white h-14 w-11/12  mx-3 rounded-xl flex justify-between px-5 py-4 overflow-hidden relative group cursor-pointer hover:bg-slate-700/20">
+    <tr
+      onClick={toDetailsHandler}
+      className="text-white h-14 w-11/12  mx-3 rounded-xl flex justify-between px-5 py-4 overflow-hidden relative group cursor-pointer hover:bg-slate-700/20"
+    >
       <td className="m-auto">{id}</td>
       <td className="m-auto">{title}</td>
       <td className="m-auto">{content}</td>
@@ -46,6 +59,8 @@ const Post = (props) => {
       <td className="m-auto">{like}</td>
       <td className="m-auto">{view}</td>
       <div
+        onMouseEnter={enterHandler}
+        onMouseLeave={leaveHandler}
         className="absolute right-0 opacity-0  translate-x-80 transition-all group-hover:translate-x-0 group-hover:opacity-100 h-full z-50"
         ref={buttonWrapRef}
       >
@@ -56,7 +71,7 @@ const Post = (props) => {
           죠아요
         </button>
         <button
-          onClick={toDetailsHandler}
+          onClick={detailsHandler}
           className="p-1 px-6 font-bold bg-green-600 mx-2 rounded-lg hover:bg-green-500 hover:border-1 hover:border-green-600 z-50"
         >
           수정

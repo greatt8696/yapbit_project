@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import AddPost from "../components/AddPost";
 import Posts from "../components/Posts";
 
 const PostBoard = () => {
+  const [onAdd, setOnAdd] = useState(false);
   return (
     <div className="w-full h-full bg-slate-900 mt-5 flex">
-      <Posts></Posts>
+      <Posts setOnAdd={setOnAdd} onAdd={onAdd}></Posts>
+      {onAdd && <AddPost setOnAdd={setOnAdd} onAdd={onAdd} />}
     </div>
   );
 };

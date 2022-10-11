@@ -1,6 +1,6 @@
 const initState = {
   postDetail: {},
-  nextPostId: 2,
+  nextPostId: 7,
   posts: [
     {
       id: 0,
@@ -73,7 +73,11 @@ const postReducer = (state = initState, action) => {
 
   switch (type) {
     case "ADD_POST": {
-      return { ...state, posts: [...state.posts, payload] };
+      state.nextPostId++;
+      return {
+        ...state,
+        posts: [...state.posts, { ...payload, id: state.nextPostId }],
+      };
     }
     case "EDIT_POST": {
       return {

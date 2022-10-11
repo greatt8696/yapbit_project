@@ -8,6 +8,7 @@ import MsgSlot from "./MsgSlot";
 import Msg from "./Msg";
 import Post from "./Post";
 import Posts from "./Posts";
+import AddPost from "./AddPost";
 export {
   Header,
   Body,
@@ -19,4 +20,5 @@ export {
   Msg,
   Post,
   Posts,
+  AddPost,
 };
