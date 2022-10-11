@@ -109,6 +109,7 @@ const postReducer = (state = initState, action) => {
     }
 
     case "UP_VIEW_POST": {
+      console.log("UUP_VIEW_POST", payload);
       return {
         ...state,
         posts: [

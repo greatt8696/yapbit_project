@@ -12,9 +12,14 @@ const PostDetails = () => {
     content: "",
     writer: "",
     id: "0",
-    like: "0",
-    view: "0",
+    like: 0,
+    view: 0,
   });
+
+  const [isEnter, setEnter] = useState(false);
+
+  const enterHandler = () => setEnter(true);
+  const leaveHandler = () => setEnter(false);
 
   useEffect(() => {
     setInputs({ ...inputs });
@@ -39,12 +44,18 @@ const PostDetails = () => {
     nav("/postBoard");
   };
 
-  const goToBack = () => nav(-1);
+  const goToBack = () => {
+    if (!isEnter) nav(-1);
+  };
 
   return (
     <div onClick={goToBack} className="w-full h-full bg-slate-900 flex">
       <div className="mx-auto mt-12">
-        <div className="w-[800px] h-[800px] bg-white/25 rounded-2xl p-5 flex flex-col gap-5">
+        <div
+          onMouseEnter={enterHandler}
+          onMouseLeave={leaveHandler}
+          className="w-[800px] h-[800px] bg-white/25 rounded-2xl p-5 flex flex-col gap-5"
+        >
           <div className="flex justify-between ">
             <label className="text-2xl mx-1">ID</label>
             <input

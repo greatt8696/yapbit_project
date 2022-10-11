@@ -24,9 +24,15 @@ const Post = (props) => {
       type: "UP_LIKE_POST",
       payload: { ...props.post, userName: loginUser.name },
     });
+  const viewHandler = () =>
+    dispatch({
+      type: "UP_VIEW_POST",
+      payload: { ...props.post, userName: loginUser.name },
+    });
 
   const toDetailsHandler = () => {
     if (!rock) {
+      viewHandler();
       dispatch({
         type: "ON_DETAILS_POST",
         payload: { ...props.post, userName: loginUser.name },
@@ -37,6 +43,10 @@ const Post = (props) => {
   const detailsHandler = () => {
     dispatch({
       type: "ON_DETAILS_POST",
+      payload: { ...props.post, userName: loginUser.name },
+    });
+    dispatch({
+      type: "UP_VIEW_POST",
       payload: { ...props.post, userName: loginUser.name },
     });
     nav("/postDetails");

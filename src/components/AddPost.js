@@ -10,8 +10,8 @@ const AddPost = ({ setOnAdd, onAdd }) => {
     title: "",
     content: "",
     writer: "",
-    like: "0",
-    view: "0",
+    like: 0,
+    view: 0,
   });
   useEffect(() => {
     setInputs({ ...inputs, writer: loginUser.name });
