@@ -1,9 +1,9 @@
 import imgUrls from "../../assets/index";
 
 const initState = {
-  isLogin: true,
+  isLogin: false,
   isLoading: false,
-  loginUser: { id: 0, name: "뀨", pwd: "123", imgUrl: imgUrls[0] },
+  loginUser: {},
   nextUserId: 2,
   users: [
     { id: 0, name: "뀨", pwd: "123", imgUrl: imgUrls[0] },
@@ -18,19 +18,32 @@ const loginReducer = (state = initState, action) => {
 
   switch (type) {
     case "SIGNUP_USER": {
+      state.nextUserId++;
       return {
         ...state,
-        isLogin: true,
-        logginUser: payload,
-        users: [...state.users, payload],
+        users: [
+          ...state.users,
+          {
+            ...payload,
+            imgUrl: imgUrls[parseInt(3 * Math.random())],
+            id: state.nextUserId,
+          },
+        ],
       };
     }
     case "LOGIN_USER": {
-      return { ...state, isLogin: true, logginUser: payload };
+      const findUser = state.users.find(
+        (user) => user.name === payload.name && user.pwd === payload.pwd
+      );
+      return {
+        ...state,
+        isLogin: findUser ? true : false,
+        loginUser: findUser ? findUser : {},
+      };
     }
 
     case "LOGOUT_USER": {
-      return { ...state, isLogin: false, logginUser: {} };
+      return { ...state, isLogin: false, loginUser: {} };
     }
 
     default:

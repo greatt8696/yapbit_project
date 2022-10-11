@@ -8,11 +8,13 @@ import {
   SignUp,
   MyWallet,
   Loading,
+  PostBoard,
+  PostDetails,
 } from "./pages";
 import Modal from "./pages/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import upbitSocket from "./socket/upbitSocket";
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 
 function App() {
   initDatas();
@@ -66,6 +68,8 @@ function App() {
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/exchange" element={<Exchange />} />
         <Route path="/myWallet" element={<MyWallet />} />
+        <Route path="/postBoard" element={<PostBoard />} />
+        <Route path="/postDetails" element={<PostDetails />} />
       </Routes>
       {onLoading && <Loading />}
       {onModal && <Modal />}

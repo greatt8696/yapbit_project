@@ -1,23 +1,30 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const isLogin = useSelector((state) => state.loginReducer.isLogin);
   const loginUser = useSelector((state) => state.loginReducer.loginUser);
+  const users = useSelector((state) => state.loginReducer.users);
   const [isDropDown, setDropDown] = useState(false);
 
   const dispatch = useDispatch();
 
   const nav = useNavigate();
 
+  useEffect(() => {
+    console.log(loginUser);
+    console.log("@@imgUrl@@@", loginUser.imgUrl);
+    console.log("@@@@@users@", loginUser.users);
+  }, [loginUser, users]);
+
   const navWrap = (path) => {
     dispatch({ type: "ON_LOADING" });
     nav(path);
   };
-  const goToMain = ()=> navWrap("/");
+  const goToMain = () => navWrap("/");
   const goToSignUp = () => navWrap("/signUp");
-  const goToPosts = () => navWrap("/posts");
+  const goToPosts = () => navWrap("/postBoard");
   const goToExchange = () => navWrap("/exchange");
   const goToLogin = () => navWrap("/login");
   const goToProfile = () => navWrap("/profile");
@@ -80,7 +87,6 @@ const Header = () => {
                 투자내역
               </a>
             </li>
-
           </ul>
           <ul className="flex w-96 h-full ml-auto items-stretch gap-3 justify-end">
             {!isLogin && (
