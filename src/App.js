@@ -63,7 +63,7 @@ function App() {
     <div className="App w-screen h-screen bg-neutral-900 text-white overflow-hidden relative">
       <Header />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<PostBoard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/exchange" element={<Exchange />} />
