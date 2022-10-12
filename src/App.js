@@ -45,6 +45,7 @@ function App() {
           acc_trade_price_24h,
         };
         dispatch({ type: "CHANGE_COIN", payload: newData });
+        console.log(newData);
       }
       if (data.type === "orderbook") {
         const { code, orderbook_units, total_ask_size, total_bid_size } = data;
@@ -55,25 +56,28 @@ function App() {
           total_bid_size,
         };
         dispatch({ type: "CHANGE_ORDERBOOK", payload: newData });
+        console.log(newData);
       }
     };
   }, []);
 
   return (
     <div className="App w-screen h-screen bg-neutral-900 text-white overflow-hidden relative">
-      <Header />
-      <Routes>
-        <Route path="/" element={<PostBoard />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signUp" element={<SignUp />} />
-        <Route path="/exchange" element={<Exchange />} />
-        <Route path="/myWallet" element={<MyWallet />} />
-        <Route path="/postBoard" element={<PostBoard />} />
-        <Route path="/postDetails" element={<PostDetails />} />
-      </Routes>
-      {onLoading && <Loading />}
-      {onModal && <Modal />}
-      {onMsg && <MsgSlot />}
+      <React.StrictMode>
+        <Header />
+        <Routes>
+          <Route path="/" element={<PostBoard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/exchange" element={<Exchange />} />
+          <Route path="/myWallet" element={<MyWallet />} />
+          <Route path="/postBoard" element={<PostBoard />} />
+          <Route path="/postDetails" element={<PostDetails />} />
+        </Routes>
+        {onLoading && <Loading />}
+        {onModal && <Modal />}
+        {onMsg && <MsgSlot />}
+      </React.StrictMode>
     </div>
   );
 }
