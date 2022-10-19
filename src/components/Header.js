@@ -22,6 +22,7 @@ const Header = () => {
     dispatch({ type: "ON_LOADING" });
     nav(path);
   };
+  
   const goToMain = () => navWrap("/");
   const goToSignUp = () => navWrap("/signUp");
   const goToPosts = () => navWrap("/postBoard");
